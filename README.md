@@ -29,7 +29,7 @@ Skeleton for a TypeScript frontend library published to npm.
 ├── vite.config.ts             Library build (lib mode, preserveModules) + Vitest config.
 ├── tsconfig.json
 ├── package.json               "exports" and "sideEffects", see below.
-├── CHANGELOG.md               Changesets-style changelog, maintained by hand.
+├── CHANGELOG.md               Changelog, maintained by hand.
 └── .prettierrc
 ```
 
@@ -95,4 +95,4 @@ A single file can also opt into jsdom with `// @vitest-environment jsdom` at the
 
 ## Changelog
 
-`CHANGELOG.md` uses the [Changesets](https://github.com/changesets/changesets) layout without the tooling. One `##` heading per version, newest first, with `### Major Changes`, `### Minor Changes` and `### Patch Changes` sections as needed, one bullet per change. Add the entry in the same commit as the change, and bump `version` in `package.json` before publishing.
+`CHANGELOG.md` has one `##` heading per version, newest first, with `### Major Changes`, `### Minor Changes` and `### Patch Changes` sections as needed, one bullet per change. Add the entry in the same commit as the change, and bump `version` in `package.json` before publishing.
