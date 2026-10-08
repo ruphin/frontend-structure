@@ -1,6 +1,6 @@
 # @ruphin/frontend-structure
 
-Skeleton for a TypeScript frontend library published to npm.
+Default structure for frontend projects.
 
 ## Layout
 
@@ -8,13 +8,13 @@ Skeleton for a TypeScript frontend library published to npm.
 .
 ├── src/
 │   ├── index.ts               Pure public entrypoint: classes, helpers, types. No side effects.
-│   ├── lib/                   Plain helpers and shared code (no DOM registration).
+│   ├── lib/                   Non-component code. If the project has no components, put it directly in src.
 │   │   └── greet.ts
-│   ├── components/            Custom element classes. Pure: no customElements.define() here.
+│   ├── components/            Custom element classes. Pure: no define() here.
 │   │   ├── counter-button.ts
 │   │   └── counter-button.test.ts   Tests live next to the code they test (Vitest).
 │   └── elements/              Registering entrypoints, one per element. These have side effects.
-│       └── counter-button.ts  import class, customElements.define("counter-button", ...)
+│       └── counter-button.ts  import class, define("counter-button", ...)
 ├── test/                      Tests that are not tied to one source file (packaging contract).
 ├── dev/                       Local development page that consumes the library; never published.
 │   ├── index.html
@@ -29,8 +29,7 @@ Skeleton for a TypeScript frontend library published to npm.
 ├── vite.config.ts             Library build (lib mode, preserveModules) + Vitest config.
 ├── tsconfig.json
 ├── package.json               "exports" and "sideEffects", see below.
-├── CHANGELOG.md               Keep a Changelog format, maintained by hand.
-└── .prettierrc
+└── CHANGELOG.md               Keep a Changelog file, maintained by hand.
 ```
 
 ## Entry points and tree shaking
@@ -57,22 +56,22 @@ Never set `"sideEffects": false` on this package. Bundlers would then drop `impo
 To add an element:
 
 1. Create the pure class in `src/components/<name>.ts` and export it from `src/index.ts`.
-2. Create `src/elements/<name>.ts` that imports the class, calls `customElements.define`, and augments `HTMLElementTagNameMap`.
+2. Create `src/elements/<name>.ts` that imports the class, defines the element, and augments `HTMLElementTagNameMap`.
 3. Nothing else: the build globs `src/elements/*.ts` for entries and the `./elements/*` export pattern covers it.
 
-Rules for the pure side: no top-level calls, no `@customElement` style decorators, no static initializers that touch globals. If you ship CSS files, add them to the `sideEffects` array too.
+Rules for the pure side: no top-level calls, no `@customElement` style decorators, no static initializers that touch globals.
 
 ## Scripts
 
-| Script              | What it does                                            |
-| ------------------- | ------------------------------------------------------- |
-| `npm run dev`       | Serve `dev/` with HMR, importing the library from `src` |
-| `npm run build`     | Build ESM bundle + type declarations into `dist/`       |
-| `npm test`          | Run Vitest once (`test:watch` for watch mode)           |
-| `npm run typecheck` | `tsc --noEmit` over src, dev and config                 |
-| `npm run format`    | Prettier write (`format:check` to verify only)          |
-| `npm run check`     | typecheck + format:check + test                         |
-| `npm publish`       | Runs `prepublishOnly` (check + build) first             |
+| Script              | What it does                                                        |
+| ------------------- | ------------------------------------------------------------------- |
+| `npm run dev`       | Serve `dev/` for loca development, importing the library from `src` |
+| `npm run build`     | Build ESM bundle + type declarations into `dist/`                   |
+| `npm test`          | Run Vitest once (`test:watch` for watch mode)                       |
+| `npm run typecheck` | `tsc --noEmit` over src, dev and config                             |
+| `npm run format`    | Prettier write (`format:check` to verify only)                      |
+| `npm run check`     | typecheck + format:check + test                                     |
+| `npm publish`       | Runs `prepublishOnly` (check + build) first                         |
 
 ## Conventions
 
