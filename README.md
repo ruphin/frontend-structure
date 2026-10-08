@@ -29,7 +29,7 @@ Skeleton for a TypeScript frontend library published to npm.
 ├── vite.config.ts             Library build (lib mode, preserveModules) + Vitest config.
 ├── tsconfig.json
 ├── package.json               "exports" and "sideEffects", see below.
-├── CHANGELOG.md               Changelog, maintained by hand.
+├── CHANGELOG.md               Keep a Changelog format, maintained by hand.
 └── .prettierrc
 ```
 
@@ -95,4 +95,4 @@ A single file can also opt into jsdom with `// @vitest-environment jsdom` at the
 
 ## Changelog
 
-`CHANGELOG.md` has one `##` heading per version, newest first, with `### Major Changes`, `### Minor Changes` and `### Patch Changes` sections as needed, one bullet per change. Add the entry in the same commit as the change, and bump `version` in `package.json` before publishing.
+`CHANGELOG.md` follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/). Changes go under `## [Unreleased]` as they are made, grouped into `### Added`, `### Changed`, `### Deprecated`, `### Removed`, `### Fixed` or `### Security`, one bullet per change. When publishing, rename the Unreleased heading to the new version and date, bump `version` in `package.json`, and start a fresh Unreleased section.
