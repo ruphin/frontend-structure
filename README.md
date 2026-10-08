@@ -65,7 +65,7 @@ Rules for the pure side: no top-level calls, no `@customElement` style decorator
 
 | Script              | What it does                                                        |
 | ------------------- | ------------------------------------------------------------------- |
-| `npm run dev`       | Serve `dev/` for loca development, importing the library from `src` |
+| `npm run dev`       | Serve `dev/` for local development, importing the library from `src`|
 | `npm run build`     | Build ESM bundle + type declarations into `dist/`                   |
 | `npm test`          | Run Vitest once (`test:watch` for watch mode)                       |
 | `npm run typecheck` | `tsc --noEmit` over src, dev and config                             |
